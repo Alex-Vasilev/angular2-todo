@@ -1,0 +1,12 @@
+.hide{
+    display: none;
+}
+
+.head-button{
+    position: absolute;
+    width: 100px;
+    top: 5px;
+    right: 0px;
+    color: #666;
+    cursor: pointer;
+}
