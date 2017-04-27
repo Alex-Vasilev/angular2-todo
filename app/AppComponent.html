@@ -11,7 +11,7 @@
             <li *ngFor="let item of items" [class.completed]="item.done" [class.hide]="item.hide">
                 <div class="view">
                     <input class="toggle" type="checkbox" [(ngModel)]="item.done">
-                    <label (dblclick)="enterEditMode(todoItemInput)">{{item.purchase}}</label>
+                    <label>{{item.purchase}}</label>
                     <button class="destroy" (click)="deleteTodo(items.indexOf(this.item))"></button>
                 </div>
                 <input class="edit" value="Create a TodoMVC template">
