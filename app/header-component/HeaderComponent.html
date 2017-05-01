@@ -1,0 +1,9 @@
+<header class="header">
+    <h1>todos</h1>
+    <input [(ngModel)]="text" 
+        class="new-todo" 
+        placeholder="What needs to be done?" 
+        autofocus 
+       (keyup.enter)="addItemToList(text); text=''"> 
+       <button class="head-button" (click)="addItemToList(text); text=''">Add TODO</button>
+</header>

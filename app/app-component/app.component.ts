@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 export class Item {
     purchase: string;
@@ -14,9 +14,11 @@ export class Item {
 
 @Component({
     selector: 'my-app',
-    templateUrl: 'app/AppComponent.html'
+    templateUrl: 'app/app-component/AppComponent.html'
 })
+
 export class AppComponent {
+    @Input() addTextItem:string;
     editMode = false;
     items: Item[] =
     [
@@ -25,14 +27,20 @@ export class AppComponent {
         {purchase: "To have a beer", done: true, hide: false},
         {purchase: "Walking with a dog", done: false, hide: false}
     ];
+    
     addItem(text: string): void {
+        console.log(2)
+        console.log(text)
         if (text == null || text == undefined || text.trim() == "")
             return;
-        this.items.push(new Item(text));
+        this.items.push(new Item(text));        
     };
+    
     deleteTodo(index: number) {
         this.items.splice(index, 1);
+        console.log(this.addTextItem)
     };
+    
     deleteSelectedTodos() {
         for (var i = (this.items.length - 1); i > -1; i--) {
             if (this.items[i].done) {
@@ -40,6 +48,7 @@ export class AppComponent {
             }
         }
     };
+    
     countPluralize() {
         var counter = 0;
         for (var i = (this.items.length - 1); i > -1; i--) {
@@ -49,11 +58,13 @@ export class AppComponent {
         }
         return counter;
     };
+    
     showAllTodos() {
         for (var i = (this.items.length - 1); i > -1; i--) {         
                 this.items[i].hide = false;         
         }
     };
+    
     showActiveTodos() {
         this.showAllTodos();
         for (var i = (this.items.length - 1); i > -1; i--) {
@@ -62,6 +73,7 @@ export class AppComponent {
             }
         }
     };
+    
     showCompletedTodos() {
         this.showAllTodos();
         for (var i = (this.items.length - 1); i > -1; i--) {

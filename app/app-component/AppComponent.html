@@ -1,0 +1,22 @@
+<section class="todoapp">
+    <my-app-header (addTextItem)="addItem($event); text=''"></my-app-header>                  
+    <section class="main">
+        <input class="toggle-all" type="checkbox">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="todo-list">                                
+            <li *ngFor="let item of items" [class.completed]="item.done" [class.hide]="item.hide">
+                <div class="view">
+                    <input class="toggle" type="checkbox" [(ngModel)]="item.done">
+                    <label>{{item.purchase}}</label>
+                    <button class="destroy" (click)="deleteTodo(items.indexOf(this.item))"></button>
+                </div>
+                <input class="edit" value="Create a TodoMVC template">
+            </li>
+        </ul>
+    </section>
+<my-app-footer (showAllItemsTodosEvent) = "showAllTodos()"
+    (showActiveItemsTodosEvent) = "showActiveTodos()"
+    (showCompletedItemsTodosEvent) = "showCompletedTodos()"
+    (deleteSelectedItemsTodosEvent) = "deleteSelectedTodos()"
+    [countTodosPluralize] = "countPluralize()"></my-app-footer>
+</section>

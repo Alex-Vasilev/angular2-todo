@@ -9,9 +9,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
-var app_component_1 = require("./app.component");
-//import { ActiveTodosComponent }   from './active.component';
-//import { CompletedTodosComponent }   from './completed.component';
+var app_component_1 = require("./app-component/app.component");
+var header_component_1 = require("./header-component/header.component");
+var footer_component_1 = require("./footer-component/footer.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -20,7 +20,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-        declarations: [app_component_1.AppComponent,],
+        declarations: [app_component_1.AppComponent, header_component_1.HeaderComponent, footer_component_1.FooterComponent],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
