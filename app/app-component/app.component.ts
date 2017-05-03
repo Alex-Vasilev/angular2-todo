@@ -82,4 +82,10 @@ export class AppComponent {
             }
         }
     };
+    
+    allDone() {      
+        for (var i = (this.items.length - 1); i > -1; i--) {
+                this.items[i].done = true;          
+        }
+    }
 }

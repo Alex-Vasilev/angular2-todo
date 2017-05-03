@@ -2,7 +2,7 @@
     <my-app-header (addTextItem)="addItem($event); text=''"></my-app-header>                  
     <section class="main">
         <input class="toggle-all" type="checkbox">
-        <label for="toggle-all">Mark all as complete</label>
+        <label for="toggle-all" (click)="allDone()" title="Done All">Mark all as complete</label>
         <ul class="todo-list">                                
             <li *ngFor="let item of items" [class.completed]="item.done" [class.hide]="item.hide">
                 <div class="view">
@@ -14,9 +14,9 @@
             </li>
         </ul>
     </section>
-<my-app-footer (showAllItemsTodosEvent) = "showAllTodos()"
-    (showActiveItemsTodosEvent) = "showActiveTodos()"
-    (showCompletedItemsTodosEvent) = "showCompletedTodos()"
-    (deleteSelectedItemsTodosEvent) = "deleteSelectedTodos()"
-    [countTodosPluralize] = "countPluralize()"></my-app-footer>
+    <my-app-footer (showAllItemsTodosEvent) = "showAllTodos()"
+        (showActiveItemsTodosEvent) = "showActiveTodos()"
+        (showCompletedItemsTodosEvent) = "showCompletedTodos()"
+        (deleteSelectedItemsTodosEvent) = "deleteSelectedTodos()"
+        [countTodosPluralize] = "countPluralize()"></my-app-footer>
 </section>

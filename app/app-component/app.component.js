@@ -83,6 +83,11 @@ var AppComponent = (function () {
         }
     };
     ;
+    AppComponent.prototype.allDone = function () {
+        for (var i = (this.items.length - 1); i > -1; i--) {
+            this.items[i].done = true;
+        }
+    };
     return AppComponent;
 }());
 __decorate([
