@@ -21,6 +21,7 @@ exports.Item = Item;
 var AppComponent = (function () {
     function AppComponent() {
         this.editMode = false;
+        this.olldItemTxt = '';
         this.items = [
             { purchase: "Learn JavaScript", done: false, hide: false },
             { purchase: "Learn Angular", done: false, hide: false },
@@ -35,12 +36,10 @@ var AppComponent = (function () {
             return;
         this.items.push(new Item(text));
     };
-    ;
     AppComponent.prototype.deleteTodo = function (index) {
         this.items.splice(index, 1);
         console.log(this.addTextItem);
     };
-    ;
     AppComponent.prototype.deleteSelectedTodos = function () {
         for (var i = (this.items.length - 1); i > -1; i--) {
             if (this.items[i].done) {
@@ -48,7 +47,6 @@ var AppComponent = (function () {
             }
         }
     };
-    ;
     AppComponent.prototype.countPluralize = function () {
         var counter = 0;
         for (var i = (this.items.length - 1); i > -1; i--) {
@@ -58,13 +56,11 @@ var AppComponent = (function () {
         }
         return counter;
     };
-    ;
     AppComponent.prototype.showAllTodos = function () {
         for (var i = (this.items.length - 1); i > -1; i--) {
             this.items[i].hide = false;
         }
     };
-    ;
     AppComponent.prototype.showActiveTodos = function () {
         this.showAllTodos();
         for (var i = (this.items.length - 1); i > -1; i--) {
@@ -73,7 +69,6 @@ var AppComponent = (function () {
             }
         }
     };
-    ;
     AppComponent.prototype.showCompletedTodos = function () {
         this.showAllTodos();
         for (var i = (this.items.length - 1); i > -1; i--) {
@@ -82,11 +77,28 @@ var AppComponent = (function () {
             }
         }
     };
-    ;
     AppComponent.prototype.allDone = function () {
         for (var i = (this.items.length - 1); i > -1; i--) {
             this.items[i].done = true;
         }
+    };
+    AppComponent.prototype.enterEditMode = function (element) {
+        var _this = this;
+        console.log('lox');
+        this.editMode = true;
+        if (this.editMode) {
+            setTimeout(function () {
+                element.focus();
+                _this.olldItemTxt = element.value;
+            }, 0);
+        }
+    };
+    AppComponent.prototype.cancelEdit = function (element) {
+        this.editMode = false;
+        element.value = this.olldItemTxt;
+    };
+    AppComponent.prototype.commitEdit = function (updatedText) {
+        this.editMode = false;
     };
     return AppComponent;
 }());
