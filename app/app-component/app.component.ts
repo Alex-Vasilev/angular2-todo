@@ -4,11 +4,14 @@ export class Item {
     purchase: string;
     done: boolean;
     hide: boolean;
+    editMode: boolean;
+    
 
     constructor(purchase: string) {
         this.purchase = purchase;
         this.done = false;
         this.hide = false;
+        this.editMode = false;
     }
 }
 
@@ -19,19 +22,16 @@ export class Item {
 
 export class AppComponent {
     @Input() addTextItem: string;
-    editMode = false;
     olldItemTxt = '';
     items: Item[] =
     [
-        {purchase: "Learn JavaScript", done: false, hide: false},
-        {purchase: "Learn Angular", done: false, hide: false},
-        {purchase: "To have a beer", done: true, hide: false},
-        {purchase: "Walking with a dog", done: false, hide: false}
+        {purchase: "Learn JavaScript", done: false, hide: false, editMode: false},
+        {purchase: "Learn Angular", done: false, hide: false, editMode: false},
+        {purchase: "To have a beer", done: true, hide: false, editMode: false},
+        {purchase: "Walking with a dog", done: false, hide: false, editMode: false}
     ];
 
     addItem(text: string): void {
-        console.log(2)
-        console.log(text)
         if (text == null || text == undefined || text.trim() == "")
             return;
         this.items.push(new Item(text));
@@ -39,7 +39,6 @@ export class AppComponent {
 
     deleteTodo(index: number) {
         this.items.splice(index, 1);
-        console.log(this.addTextItem)
     }
 
     deleteSelectedTodos() {
@@ -90,24 +89,21 @@ export class AppComponent {
         }
     }
 
-    enterEditMode(element: HTMLInputElement) {
-        console.log('lox')
-        this.editMode = true;
-        if (this.editMode) {
-            setTimeout(() => {
+    enterEditMode(index: number, element: HTMLInputElement) {
+        this.items[index].editMode = true;
+        setTimeout(() => {
                 element.focus();
                 this.olldItemTxt = element.value
-            }, 0);
-        }
+        }, 0);
     }
 
-    cancelEdit(element: HTMLInputElement) {
-        this.editMode = false;
+    cancelEdit(index: number, element: HTMLInputElement) {
+        this.items[index].editMode = false;
         element.value = this.olldItemTxt;
     }
 
-    commitEdit(updatedText: string) {
-        this.editMode = false;
-
+    commitEdit(index: number, updatedText: string) {
+        this.items[index].editMode = false;
+        this.items[index].purchase = updatedText;
     }
 }

@@ -14,31 +14,28 @@ var Item = (function () {
         this.purchase = purchase;
         this.done = false;
         this.hide = false;
+        this.editMode = false;
     }
     return Item;
 }());
 exports.Item = Item;
 var AppComponent = (function () {
     function AppComponent() {
-        this.editMode = false;
         this.olldItemTxt = '';
         this.items = [
-            { purchase: "Learn JavaScript", done: false, hide: false },
-            { purchase: "Learn Angular", done: false, hide: false },
-            { purchase: "To have a beer", done: true, hide: false },
-            { purchase: "Walking with a dog", done: false, hide: false }
+            { purchase: "Learn JavaScript", done: false, hide: false, editMode: false },
+            { purchase: "Learn Angular", done: false, hide: false, editMode: false },
+            { purchase: "To have a beer", done: true, hide: false, editMode: false },
+            { purchase: "Walking with a dog", done: false, hide: false, editMode: false }
         ];
     }
     AppComponent.prototype.addItem = function (text) {
-        console.log(2);
-        console.log(text);
         if (text == null || text == undefined || text.trim() == "")
             return;
         this.items.push(new Item(text));
     };
     AppComponent.prototype.deleteTodo = function (index) {
         this.items.splice(index, 1);
-        console.log(this.addTextItem);
     };
     AppComponent.prototype.deleteSelectedTodos = function () {
         for (var i = (this.items.length - 1); i > -1; i--) {
@@ -82,23 +79,21 @@ var AppComponent = (function () {
             this.items[i].done = true;
         }
     };
-    AppComponent.prototype.enterEditMode = function (element) {
+    AppComponent.prototype.enterEditMode = function (index, element) {
         var _this = this;
-        console.log('lox');
-        this.editMode = true;
-        if (this.editMode) {
-            setTimeout(function () {
-                element.focus();
-                _this.olldItemTxt = element.value;
-            }, 0);
-        }
+        this.items[index].editMode = true;
+        setTimeout(function () {
+            element.focus();
+            _this.olldItemTxt = element.value;
+        }, 0);
     };
-    AppComponent.prototype.cancelEdit = function (element) {
-        this.editMode = false;
+    AppComponent.prototype.cancelEdit = function (index, element) {
+        this.items[index].editMode = false;
         element.value = this.olldItemTxt;
     };
-    AppComponent.prototype.commitEdit = function (updatedText) {
-        this.editMode = false;
+    AppComponent.prototype.commitEdit = function (index, updatedText) {
+        this.items[index].editMode = false;
+        this.items[index].purchase = updatedText;
     };
     return AppComponent;
 }());

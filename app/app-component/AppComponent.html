@@ -4,18 +4,18 @@
         <input class="toggle-all" type="checkbox">
         <label for="toggle-all" (click)="allDone()" title="Done All">Mark all as complete</label>
         <ul class="todo-list">                                
-            <li *ngFor="let item of items" [class.completed]="item.done" [class.hide]="item.hide" [class.editing]="editMode">
+            <li *ngFor="let item of items" [class.completed]="item.done" [class.hide]="item.hide" [class.editing]="item.editMode">
                 <div class="view">
                     <input class="toggle" type="checkbox" [(ngModel)]="item.done">
-                    <label (dblclick)="enterEditMode(todoItemInput)">{{item.purchase}}</label>
+                    <label (dblclick)="enterEditMode(items.indexOf(this.item),todoItemInput)">{{item.purchase}}</label>
                     <button class="destroy" (click)="deleteTodo(items.indexOf(this.item))"></button>
                 </div>
                 <input class="edit" value="Create a TodoMVC template"
                        #todoItemInput
                        [value]="item.purchase"   
-                       (keyup.enter)="commitEdit(todoItemInput.value)"
-                       (keyup.escape)="cancelEdit(todoItemInput)"
-                       (blur)="commitEdit(todoItemInput.value)">
+                       (keyup.enter)="commitEdit(items.indexOf(this.item),todoItemInput.value)"
+                       (keyup.escape)="cancelEdit(items.indexOf(this.item),todoItemInput)"
+                       (blur)="commitEdit(items.indexOf(this.item),todoItemInput.value)">
             </li>
         </ul>
     </section>
