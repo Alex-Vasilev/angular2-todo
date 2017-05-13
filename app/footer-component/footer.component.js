@@ -15,15 +15,19 @@ var FooterComponent = (function () {
         this.showActiveItemsTodosEvent = new core_1.EventEmitter();
         this.showCompletedItemsTodosEvent = new core_1.EventEmitter();
         this.deleteSelectedItemsTodosEvent = new core_1.EventEmitter();
+        this.showMethod = 'showAllTodosEvent';
     }
     FooterComponent.prototype.showAllTodosEvent = function () {
         this.showAllItemsTodosEvent.emit();
+        this.showMethod = 'showAllTodosEvent';
     };
     FooterComponent.prototype.showActiveTodosEvent = function () {
         this.showActiveItemsTodosEvent.emit();
+        this.showMethod = 'showActiveItemsTodosEvent';
     };
     FooterComponent.prototype.showCompletedTodosEvent = function () {
         this.showCompletedItemsTodosEvent.emit();
+        this.showMethod = 'showCompletedItemsTodosEvent';
     };
     FooterComponent.prototype.deleteSelectedTodosEvent = function () {
         this.deleteSelectedItemsTodosEvent.emit();

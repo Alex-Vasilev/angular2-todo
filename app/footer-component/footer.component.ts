@@ -11,17 +11,22 @@ export class FooterComponent {
     @Output() deleteSelectedItemsTodosEvent = new EventEmitter<any>();
     
     @Input() countTodosPluralize: number;
+    
+    showMethod = 'showAllTodosEvent';
 
     showAllTodosEvent() {
         this.showAllItemsTodosEvent.emit();
+        this.showMethod = 'showAllTodosEvent';
     } 
     
     showActiveTodosEvent () {
         this.showActiveItemsTodosEvent.emit();
+        this.showMethod = 'showActiveItemsTodosEvent';
     } 
     
     showCompletedTodosEvent () {
         this.showCompletedItemsTodosEvent.emit();
+        this.showMethod = 'showCompletedItemsTodosEvent';
     } 
     
     deleteSelectedTodosEvent () {

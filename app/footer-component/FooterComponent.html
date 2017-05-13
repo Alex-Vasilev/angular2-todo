@@ -5,13 +5,13 @@
     </span>                            
     <ul class="filters">
         <li>
-            <a href="#/" (click)="showAllTodosEvent()">All</a>
+            <a [class.selected]="showMethod == 'showAllTodosEvent'" href="#/" (click)="showAllTodosEvent()">All</a>
         </li>
         <li>
-            <a href="#/active" (click)="showActiveTodosEvent()">Active</a>
+            <a [class.selected]="showMethod == 'showActiveItemsTodosEvent'" href="#/active" (click)="showActiveTodosEvent()">Active</a>
         </li>
         <li>
-            <a href="#/completed" (click)="showCompletedTodosEvent()">Completed</a>
+            <a [class.selected]="showMethod == 'showCompletedItemsTodosEvent'" href="#/completed" (click)="showCompletedTodosEvent()">Completed</a>
         </li>
     </ul>                            
     <button class="clear-completed" (click)="deleteSelectedTodosEvent()">Clear completed</button>
