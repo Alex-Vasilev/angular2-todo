@@ -6,7 +6,6 @@ export class Item {
     hide: boolean;
     editMode: boolean;
     
-
     constructor(purchase: string) {
         this.purchase = purchase;
         this.done = false;
